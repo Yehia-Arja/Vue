@@ -2,11 +2,7 @@ import { defineStore } from 'pinia'
 import authApi from '../api/auth.api'
 import { decodeUserFromToken } from '../utils/jwt'
 import type { User } from '../utils/jwt'
-
-interface Credentials {
-  email: string
-  password: string
-}
+import type { Credentials } from '../types/auth.types'
 
 interface LoginResponse {
   token: string
@@ -21,17 +17,14 @@ export const useAuthStore = defineStore('auth', {
 
   actions: {
     async login(credentials: Credentials): Promise<void> {
+      this.loading = true
+      this.error = null
       try {
-        this.loading = true
-        this.error = null
-
         const response: LoginResponse = await authApi.login(credentials)
-
         if (!response || !response.token) {
           throw new Error('Invalid login response')
         }
         localStorage.setItem('token', response.token)
-
         this.user = decodeUserFromToken(response.token)
       } catch (error: any) {
         this.error = error.message || 'Login failed'
@@ -47,12 +40,10 @@ export const useAuthStore = defineStore('auth', {
     },
 
     async resetPassword(email: string): Promise<void> {
+      this.loading = true
+      this.error = null
       try {
-        this.loading = true
-        this.error = null
-
         await authApi.resetPassword(email)
-        console.log('Password reset email sent')
       } catch (error: any) {
         this.error = error.message || 'Reset failed'
         throw error
