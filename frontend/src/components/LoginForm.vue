@@ -16,9 +16,8 @@
   
             <form @submit.prevent="handleSubmit">
               <div class="input-group">
-                <label for="email">Email</label>
+                <label>Email</label>
                 <input
-                  id="email"
                   type="email"
                   v-model="credentials.identifier"
                   placeholder="example@email.com"
@@ -27,9 +26,8 @@
               </div>
   
               <div class="input-group">
-                <label for="password">Password</label>
+                <label>Password</label>
                 <input
-                  id="password"
                   type="password"
                   v-model="credentials.password"
                   placeholder="**********"
@@ -57,34 +55,41 @@
     </div>
   </template>
   
-  <script lang="ts" setup>
-  import { reactive } from 'vue'
-  import { useAuthStore } from '../store/auth.store'
+  <script>
+  import { ref } from "vue";
+  import { useAuthStore } from "../store/auth.store";
   
-  const authStore = useAuthStore()
+  export default {
+    setup() {
+      const authStore = useAuthStore();
+      const credentials = ref({
+        identifier: "",
+        password: "",
+      });
   
-  const credentials = reactive({
-    identifier: '',
-    password: ''
-  })
+      const handleSubmit = async () => {
+        try {
+          await authStore.login(credentials.value);
+        } catch (error) {
+          console.error("Login failed", error);
+        }
+      };
   
-  const handleSubmit = async () => {
-    try {
-      await authStore.login(credentials)
-    } catch (error) {
-      console.error('Login failed', error)
-    }
-  }
+      const signUp = () => {
+        console.log("Navigate to sign up page");
+      };
   
-  const signUp = () => {
-    console.log('Navigate to sign up page')
-  }
-  
-  const loading = authStore.loading
+      return {
+        credentials,
+        handleSubmit,
+        signUp,
+        loading: authStore.loading,
+      };
+    },
+  };
   </script>
   
   <style scoped>
-  /* styles same as before */
   .login-wrapper {
     min-height: 100vh;
     background-color: #fefefe;
@@ -102,32 +107,43 @@
     align-items: flex-start;
   }
   
+  /* Logo */
   .logo img {
     height: 50px;
     user-select: none;
     margin-bottom: 30px;
   }
   
+  /* Layout */
   .content {
     display: flex;
     gap: 24px;
+    height: 580px; /* fixed height container */
+    align-items: stretch; /* equal height for children */
   }
   
+  /* Image + Form */
   .image-panel,
   .login-form {
     width: 500px;
-    height: 580px;
+    /* remove fixed height */
     border-radius: 12px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    flex-grow: 1; /* fill parent's height */
   }
   
+  /* Image Panel */
   .image-panel {
-    background: linear-gradient(rgba(40, 238, 176, 0.7), rgba(40, 238, 176, 0.7)),
+    background: linear-gradient(
+        rgba(40, 238, 176, 0.7),
+        rgba(40, 238, 176, 0.7)
+      ),
       url("../assets/office1.jpg");
     background-size: cover;
     background-position: center;
   }
   
+  /* Form Panel */
   .login-form {
     background: white;
     padding: 40px;
@@ -232,6 +248,7 @@
     text-decoration: underline;
   }
   
+  /* Responsive */
   @media (max-width: 1280px) {
     .container {
       padding: 0 64px;
@@ -247,6 +264,7 @@
   @media (max-width: 900px) {
     .content {
       flex-direction: column;
+      height: auto; /* reset height on small screens */
     }
   
     .image-panel {
