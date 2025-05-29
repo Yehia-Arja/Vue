@@ -2,12 +2,18 @@ import { defineStore } from 'pinia'
 import authApi from '../api/auth.api'
 
 interface User {
-  [key: string]: any;
+  username: string
+  email: string
 }
 
 interface Credentials {
-  identifier: string;
-  password: string;
+  identifier: string
+  password: string
+}
+
+interface LoginResponse {
+  token: string
+  user: User
 }
 
 export const useAuthStore = defineStore('auth', {
@@ -20,34 +26,46 @@ export const useAuthStore = defineStore('auth', {
   actions: {
     async login(credentials: Credentials): Promise<void> {
       try {
-        this.loading = true;
-        this.error = null;
+        this.loading = true
+        this.error = null
 
-        const userData = await authApi.login(credentials);
-        this.user = userData;
+        const response: LoginResponse = await authApi.login(credentials)
 
-        console.log('Login successful', userData);
+        // Save token
+        localStorage.setItem('token', response.token)
+
+        // Set user
+        this.user = {
+          username: response.user.username,
+          email: response.user.email
+        }
+
+        console.log('Login successful', this.user)
       } catch (error: any) {
-        this.error = error.message;
-        throw error;
+        this.error = error.message || 'Login failed'
+        throw error
       } finally {
-        this.loading = false;
+        this.loading = false
       }
     },
 
-    async resetPassword(email: string): Promise<any> {
-      try {
-        this.loading = true;
-        this.error = null;
+    logout(): void {
+      this.user = null
+      localStorage.removeItem('token')
+    },
 
-        const response = await authApi.resetPassword(email);
-        console.log('Password reset email sent', response);
-        return response;
+    async resetPassword(email: string): Promise<void> {
+      try {
+        this.loading = true
+        this.error = null
+
+        await authApi.resetPassword(email)
+        console.log('Password reset email sent')
       } catch (error: any) {
-        this.error = error.message;
-        throw error;
+        this.error = error.message || 'Reset failed'
+        throw error
       } finally {
-        this.loading = false;
+        this.loading = false
       }
     }
   }
