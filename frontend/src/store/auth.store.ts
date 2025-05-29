@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia'
 import authApi from '../api/auth.api'
 import { decodeUserFromToken } from '../utils/jwt'
-import type { User } from '../utils/jwt' 
+import type { User } from '../utils/jwt'
 
 interface Credentials {
-  identifier: string
+  email: string
   password: string
 }
 
@@ -26,14 +26,13 @@ export const useAuthStore = defineStore('auth', {
         this.error = null
 
         const response: LoginResponse = await authApi.login(credentials)
-        
+
         if (!response || !response.token) {
           throw new Error('Invalid login response')
         }
         localStorage.setItem('token', response.token)
 
         this.user = decodeUserFromToken(response.token)
-        console.log('Login successful', this.user)
       } catch (error: any) {
         this.error = error.message || 'Login failed'
         throw error
