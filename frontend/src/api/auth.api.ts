@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'https://login.example.com/api' // will be replaced with the actual API URL
+const API_URL = 'http://localhost:5000/api'
 
 interface LoginCredentials {
   identifier: string
@@ -11,6 +11,9 @@ export default {
   async login(credentials: LoginCredentials): Promise<any> {
     try {
       const response = await axios.post(`${API_URL}/auth/login`, credentials)
+      if (response.status !== 200) {
+        throw new Error('Login failed')
+      }
       return response.data
     } catch (error: any) {
       throw new Error(error.response?.data?.message || 'Login failed')
