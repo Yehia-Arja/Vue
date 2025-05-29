@@ -12,7 +12,7 @@ export const useAuthStore = defineStore('auth', {
   state: () => ({
     user: null as User | null,
     loading: false,
-    error: null as string | null
+    error: null as string | null,
   }),
 
   actions: {
@@ -37,6 +37,7 @@ export const useAuthStore = defineStore('auth', {
     logout(): void {
       this.user = null
       localStorage.removeItem('token')
+      this.error = null
     },
 
     async resetPassword(email: string): Promise<void> {
@@ -58,6 +59,6 @@ export const useAuthStore = defineStore('auth', {
         const user = decodeUserFromToken(token)
         if (user) this.user = user
       }
-    }
-  }
+    },
+  },
 })
