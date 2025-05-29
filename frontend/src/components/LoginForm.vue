@@ -51,7 +51,7 @@
 
             <!-- Feedback Messages -->
             <div v-if="successMessage" class="success-msg">{{ successMessage }}</div>
-            <div v-if="authStore.error" class="error-msg">{{ authStore.error }}</div>
+            <div v-if="error" class="error-msg">{{ error }}</div>
           </form>
         </div>
       </div>
@@ -60,27 +60,22 @@
 </template>
 
 <script lang="ts">
-import { ref, computed } from 'vue'
-import { useAuthStore } from '../store/auth.store'
+import { ref } from 'vue'
+import { useAuth } from '../composables/useAuth'
 
 export default {
   setup() {
-    const authStore = useAuthStore()
-
-    const credentials = ref({
-      email: '',
-      password: ''
-    })
-
+    const { login, loading, error } = useAuth()
+    const credentials = ref({ email: '', password: '' })
     const successMessage = ref('')
 
     const handleSubmit = async () => {
+      successMessage.value = ''
       try {
-        await authStore.login(credentials.value)
+        await login(credentials.value)
         successMessage.value = 'Login successful!'
-      } catch (error) {
+      } catch {
         successMessage.value = ''
-        console.error('Login failed', error)
       }
     }
 
@@ -88,19 +83,18 @@ export default {
       console.log('Navigate to sign up page')
     }
 
-    const loading = computed(() => authStore.loading)
-
     return {
       credentials,
       handleSubmit,
       signUp,
       loading,
-      successMessage,
-      authStore
+      error,
+      successMessage
     }
   }
 }
 </script>
+
 
 <style scoped>
 .login-wrapper {
