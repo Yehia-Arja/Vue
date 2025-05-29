@@ -26,6 +26,10 @@ export const useAuthStore = defineStore('auth', {
         this.error = null
 
         const response: LoginResponse = await authApi.login(credentials)
+        
+        if (!response || !response.token) {
+          throw new Error('Invalid login response')
+        }
         localStorage.setItem('token', response.token)
 
         this.user = decodeUserFromToken(response.token)
