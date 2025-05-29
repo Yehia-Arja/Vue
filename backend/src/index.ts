@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import * as dotenv from 'dotenv';
-import mongoose from 'mongoose';
+import connectDB from './config/db';
 
 dotenv.config();
 
@@ -11,14 +11,8 @@ app.get('/', (req: Request, res: Response) => {
   res.send('API is running...');
 });
 
-mongoose
-  .connect(process.env.MONGO_URI!)
-  .then(() => {
-    console.log('MongoDB connected');
-    app.listen(process.env.PORT || 5000, () => {
-      console.log('Server running on port', process.env.PORT || 5000);
-    });
-  })
-  .catch((err) => {
-    console.error('MongoDB connection error:', err);
+connectDB().then(() => {
+  app.listen(process.env.PORT || 5000, () => {
+    console.log('Server running on port', process.env.PORT || 5000);
   });
+});
