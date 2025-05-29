@@ -3,7 +3,7 @@ import axios from 'axios'
 const API_URL = 'http://localhost:5000/api'
 
 interface LoginCredentials {
-  identifier: string
+  email: string
   password: string
 }
 
