@@ -62,18 +62,21 @@
 <script lang="ts">
 import { ref } from 'vue'
 import { useAuth } from '../composables/useAuth'
+import { useRouter } from 'vue-router'
 
 export default {
   setup() {
     const { login, loading, error } = useAuth()
     const credentials = ref({ email: '', password: '' })
     const successMessage = ref('')
+    const router = useRouter()
 
     const handleSubmit = async () => {
       successMessage.value = ''
       try {
         await login(credentials.value)
         successMessage.value = 'Login successful!'
+        router.push('/portal') 
       } catch {
         successMessage.value = ''
       }
