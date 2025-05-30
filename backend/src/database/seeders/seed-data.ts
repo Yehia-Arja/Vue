@@ -29,7 +29,7 @@ const users = [
   {
     username: 'admin',
     email: 'admin@example.com',
-    password: 'admin123', // will hash this below
+    password: 'yehia123', // will hash this below
   },
 ]
 
