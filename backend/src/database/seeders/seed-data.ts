@@ -20,7 +20,7 @@ const studentSchema = new mongoose.Schema({
   name: String,
   appName: String,
   coverImage: String,
-  type: { type: String, enum: ['mobile', 'website', 'both'], required: true },
+  type: { type: String, enum: ['mobile', 'web', 'both'], required: true },
 })
 
 const Student = mongoose.model('Student', studentSchema)
@@ -33,19 +33,16 @@ const users = [
   },
 ]
 
-// Random helper to pick 'mobile' or 'website'
-const randomType = () => (Math.random() < 0.5 ? 'mobile' : 'website')
-
 const students = [
-  { name: 'Hassan Abou Khalil', appName: 'VersusAI', coverImage: 'http://localhost:5000/images/hassan-abou-khalil_cover-image.png', type: randomType() },
-  { name: 'Ali Eldor', appName: 'Tourivo', coverImage: 'http://localhost:5000/images/Ali-Eldor_Cover_Image.png', type: randomType() },
-  { name: 'Ghady Matta', appName: 'Tutoron-GPT', coverImage: 'http://localhost:5000/images/Ghady Matta.png', type: randomType() },
-  { name: 'Houssien Zeineddine', appName: 'Secure Remote Voting', coverImage: 'http://localhost:5000/images/Houssien Zeineddine Cover-Image.png', type: randomType() },
-  { name: 'Hasan Mawassi', appName: 'SmartClinic', coverImage: 'http://localhost:5000/images/Hasan_Mawassi.png', type: randomType() },
-  { name: 'Haidar Farhat', appName: 'NuScaler', coverImage: 'http://localhost:5000/images/haidar_farhat_coverimage_NuScaler.png', type: randomType() },
-  { name: 'Hussein Abdallah', appName: 'CareerForgeAI', coverImage: 'http://localhost:5000/images/Hussein-Abdallah-CoverImage.png', type: randomType() },
-  { name: 'Abbas Hassan', appName: 'StockTock', coverImage: 'http://localhost:5000/images/AbbasHassan-CoverImage.png', type: 'mobile' },  // fixed mobile
-  { name: 'Ali Al Ahmad', appName: 'Comic Studio', coverImage: 'http://localhost:5000/images/Ali_Al_Ahmad_CoverImage.png', type: 'both' }, // set to both explicitly
+  { name: 'Ibrahim Hassoun', appName: 'Batal', coverImage: 'http://localhost:5000/images/Ibrahim_Hassoun_Cover_Image.png', type: 'mobile' },
+  { name: 'Ali Eldor', appName: 'Tourivo', coverImage: 'http://localhost:5000/images/Ali-Eldor_Cover_Image.png', type: 'web' },
+  { name: 'Ghady Matta', appName: 'Tutoron-GPT', coverImage: 'http://localhost:5000/images/Ghady Matta.png', type: 'web' },
+  { name: 'Malak Atieh', appName: 'Silent Pixel', coverImage: 'http://localhost:5000/images/Malak_Atieh_CoverImage.png', type: 'mobile' },
+  { name: 'Hasan Mawassi', appName: 'SmartClinic', coverImage: 'http://localhost:5000/images/Hasan_Mawassi.png', type: 'both' },
+  { name: 'Haidar Farhat', appName: 'NuScaler', coverImage: 'http://localhost:5000/images/haidar_farhat_coverimage_NuScaler.png', type: 'web' },
+  { name: 'Rawan Ghobar', appName: 'Fridget', coverImage: 'http://localhost:5000/images/Rawan_Ghobar_Cover_Photo.png', type: 'mobile' },
+  { name: 'Abbas Hassan', appName: 'StockTock', coverImage: 'http://localhost:5000/images/AbbasHassan-CoverImage.png', type: 'mobile' }, 
+  { name: 'Ali Al Ahmad', appName: 'Comic Studio', coverImage: 'http://localhost:5000/images/Ali_Al_Ahmad_CoverImage.png', type: 'web' },
 ]
 
 async function seed() {
