@@ -3,6 +3,7 @@
     <img :src="student.coverImage" alt="Cover" class="cover" />
     <div class="info">
       <h2 class="app-name">{{ student.appName }}</h2>
+      <div class="spacer"></div>
       <p class="student-name">By {{ student.name }}</p>
     </div>
   </div>
@@ -14,7 +15,7 @@ import type { Student } from '../store/student.store'
 defineProps<{ student: Student }>()
 
 const handleClick = () => {
-
+  // Placeholder
 }
 </script>
 
@@ -48,9 +49,7 @@ const handleClick = () => {
   padding: 8px 12px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   flex-grow: 1;
-  margin-top: 0;
 }
 
 .app-name {
@@ -59,6 +58,10 @@ const handleClick = () => {
   font-weight: 600;
   margin: 0;
   color: #2c3e50;
+}
+
+.spacer {
+  flex-grow: 1;
 }
 
 .student-name {
