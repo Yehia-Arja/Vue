@@ -25,10 +25,10 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
     }
 
     const token = jwt.sign(
-        {
-            userId: user._id,
-            email: user.email
-        },
+      {
+        userId: user._id,
+        email: user.email
+      },
       process.env.JWT_SECRET || 'secret',
       { expiresIn: '1h' }
     );
@@ -37,4 +37,9 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
   }
+};
+
+export const verifyTokenController = (req: Request, res: Response): void => {
+  // token is already verified by middleware
+  res.json({ success: true, user: (req as any).user });
 };
