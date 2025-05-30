@@ -20,7 +20,7 @@ Here are some screenshots of the application:
 
 | Login Page | Portal Page | Filtered Portal |
 |:---:|:---:|:---:|
-| <img src="readme/login.png" alt="Login" width="300"/> | <img src="readme/portal.png" alt="Portal" width="300"/> | <img src="readme/filtered_portal.png" alt="Filtered Portal" width="300"/> |
+| <img src="readme/login.png" alt="Login" width="800"/> | <img src="readme/portal.png" alt="Portal" width="800"/> | <img src="readme/filtered_portal.png" alt="Filtered Portal" width="800"/> |
 
 ---
 
