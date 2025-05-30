@@ -59,44 +59,32 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { ref } from 'vue'
 import { useAuth } from '../composables/useAuth'
 import { useRouter } from 'vue-router'
 
-export default {
-  setup() {
-    const { login, loading, error } = useAuth()
-    const credentials = ref({ email: '', password: '' })
-    const successMessage = ref('')
-    const router = useRouter()
+const { login, loading, error } = useAuth()
+const credentials = ref({ email: '', password: '' })
+const successMessage = ref('')
+const router = useRouter()
 
-    const handleSubmit = async () => {
-      successMessage.value = ''
-      try {
-        await login(credentials.value)
-        successMessage.value = 'Login successful!'
-        router.push('/portal') 
-      } catch {
-        successMessage.value = ''
-      }
-    }
-
-    const signUp = () => {
-      console.log('Navigate to sign up page')
-    }
-
-    return {
-      credentials,
-      handleSubmit,
-      signUp,
-      loading,
-      error,
-      successMessage
-    }
+const handleSubmit = async () => {
+  successMessage.value = ''
+  try {
+    await login(credentials.value)
+    successMessage.value = 'Login successful!'
+    router.push('/portal')
+  } catch {
+    successMessage.value = ''
   }
 }
+
+const signUp = () => {
+  console.log('Navigate to sign up page')
+}
 </script>
+
 
 
 <style scoped>
