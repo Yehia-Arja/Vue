@@ -14,6 +14,16 @@ A student project showcase portal built with Vue 3 (frontend) and Node.js + Type
 
 ---
 
+## 🏃‍♂️ Demo
+
+Check out the application in action:
+
+| Login Demo | Portal Demo |
+|:---:|:---:|
+| ![Login Demo](readme/loginDemo.gif) | ![Portal Demo](readme/portalDemo.gif) |
+
+---
+
 ## 🖼️ Preview
 
 Here are some screenshots of the application:
@@ -29,8 +39,8 @@ Here are some screenshots of the application:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/vue.git
-   cd vue
+   git clone https://github.com/Yehia-Arja/Vue
+   cd Vue
    ```
 
 2. Install dependencies:
@@ -85,4 +95,3 @@ Here are some screenshots of the application:
    ```
 
    Access the frontend at [http://localhost:5173](http://localhost:5173) and backend API at [http://localhost:5000](http://localhost:5000).
-
