@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
-import authApi from '../api/auth.api'
-import { decodeUserFromToken } from '../utils/jwt'
-import type { User } from '../utils/jwt'
+import authApi from '../services/auth.service'
+import { decodeUserFromToken } from '../../../utils/enum/jwt'
+import type { User } from '../../../utils/enum/jwt'
 import type { Credentials } from '../types/auth.types'
 
 interface LoginResponse {

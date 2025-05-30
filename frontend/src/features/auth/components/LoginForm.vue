@@ -2,7 +2,7 @@
   <div class="login-wrapper">
     <div class="container">
       <div class="logo">
-        <img src="../assets/logo.png" alt="SE Factory Logo" />
+        <img src="../../../assets/logo.png" alt="SE Factory Logo" />
       </div>
 
       <div class="content">
@@ -147,7 +147,7 @@ export default {
       rgba(40, 238, 176, 0.7),
       rgba(40, 238, 176, 0.7)
     ),
-    url("../assets/office1.jpg");
+    url("../../../assets/office1.jpg");
   background-size: cover;
   background-position: center;
 }
