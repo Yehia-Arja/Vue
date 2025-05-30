@@ -20,7 +20,7 @@ Here are some screenshots of the application:
 
 | Login Page | Portal Page | Filtered Portal |
 |:---:|:---:|:---:|
-| ![Login](readme/login.png) | ![Portal](readme/portal.png) | ![Filtered Portal](readme/filtered_portal.png) |
+| <img src="readme/login.png" alt="Login" width="300"/> | <img src="readme/portal.png" alt="Portal" width="300"/> | <img src="readme/filtered_portal.png" alt="Filtered Portal" width="300"/> |
 
 ---
 
@@ -29,8 +29,8 @@ Here are some screenshots of the application:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/vue.git
-   cd vue
+   git clone https://github.com/Yehia-Arja/Vue
+   cd Vue
    ```
 
 2. Install dependencies:
