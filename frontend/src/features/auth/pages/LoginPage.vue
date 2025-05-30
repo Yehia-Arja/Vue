@@ -4,14 +4,8 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
 import LoginForm from '../components/LoginForm.vue'
-
-export default defineComponent({
-  name: 'LoginPage',
-  components: { LoginForm }
-})
 </script>
 
 <style scoped>
