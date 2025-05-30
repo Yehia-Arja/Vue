@@ -24,7 +24,7 @@
     </div>
   </template>
   
-  <script lang="ts" setup>
+  <script setup lang="ts">
   import { ref, onMounted } from 'vue'
   import { useStudents } from '../composables/useStudents'
   import StudentCard from '../components/StudentCard.vue'

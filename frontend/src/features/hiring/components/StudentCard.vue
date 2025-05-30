@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import type { Student } from '../store/student.store'
 
 defineProps<{ student: Student }>()
