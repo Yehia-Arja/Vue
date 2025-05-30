@@ -1,29 +1,46 @@
-import express, { Request, Response } from 'express';
-import cors from 'cors';
-import * as dotenv from 'dotenv';
-import connectDB from './config/db';
-import authRoutes from './routes/auth';
+import express, { Request, Response } from 'express'
+import cors from 'cors'
+import * as dotenv from 'dotenv'
+import path from 'path'
 
-dotenv.config();
+import connectDB from './database/config/db'
+import authRoutes from './routes/auth'
+import studentRoutes from './routes/student'
 
-const app = express();
+dotenv.config()
+
+const app = express()
 
 // CORS middleware
 app.use(cors({
   origin: 'http://localhost:5173',
   credentials: true,
-}));
+}))
 
-app.use(express.json());
+// Parse JSON bodies
+app.use(express.json())
 
+// Serve static files from 'public/images'
+app.use('/images', express.static(path.join(__dirname, '../public/images')))
+
+// Root route
 app.get('/', (req: Request, res: Response) => {
-  res.send('API is running...');
-});
+  res.send('API is running...')
+})
 
-app.use('/api/auth', authRoutes);
+// Auth API routes
+app.use('/api/auth', authRoutes)
 
+// Students API routes
+app.use('/api/students', studentRoutes)
+
+// Connect to DB and start server
 connectDB().then(() => {
-  app.listen(process.env.PORT || 5000, () => {
-    console.log('Server running on port', process.env.PORT || 5000);
-  });
-});
+  const port = process.env.PORT || 5000
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}`)
+  })
+}).catch((err) => {
+  console.error('Failed to connect to DB', err)
+  process.exit(1)
+})
