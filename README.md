@@ -14,6 +14,16 @@ A student project showcase portal built with Vue 3 (frontend) and Node.js + Type
 
 ---
 
+## 🖼️ Preview
+
+Here are some screenshots of the application:
+
+| Login Page | Portal Page | Filtered Portal |
+|:---:|:---:|:---:|
+| ![Login](readme/login.png) | ![Portal](readme/portal.png) | ![Filtered Portal](readme/filtered_portal.png) |
+
+---
+
 ## 🚀 Getting Started
 
 1. Clone the repository:
