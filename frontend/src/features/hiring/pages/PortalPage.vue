@@ -1,6 +1,6 @@
 <template>
     <div class="portal">
-      <div class="filter">
+      <div class="header-row">
         <select v-model="selectedFilter" @change="fetch">
           <option value="">All</option>
           <option value="web">Web</option>
@@ -36,7 +36,7 @@
     try {
       loadStudents(selectedFilter.value)
     } catch {
-        console.error('Failed to fetch students:', error.value)
+      console.error('Failed to fetch students:', error.value)
     }
   }
   
@@ -45,33 +45,59 @@
   
   <style scoped>
   .portal {
-    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
   }
   
-  .filter {
-    margin-bottom: 20px;
+  .header-row {
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 16px;
+    width: 100%;
+    max-width: 100%;
   }
   
-  select {
-    padding: 8px 12px;
+  .header-row select {
+    width: 140px;
+    padding: 6px 10px;
     font-size: 14px;
-    border-radius: 4px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
   }
   
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    width: 100%;
   }
   
   .error-message {
     text-align: center;
     margin-top: 50px;
     font-weight: 600;
-    color: #c53030; /* red */
+    color: #c53030;
     font-size: 18px;
+  }
+  
+  /* Responsive tweaks */
+  @media (max-width: 600px) {
+    .portal {
+      padding: 16px 12px;
+    }
+    .header-row select {
+      width: 100px;
+      font-size: 13px;
+    }
+    .grid {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
   }
   </style>
   
