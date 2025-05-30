@@ -1,6 +1,8 @@
 # Vue Student Portal
 
-A student project showcase portal built with Vue 3 (frontend) and Node.js + TypeScript + MongoDB (backend). Includes login functionality, filtering, and a responsive layout.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+SE Factory hiring portal built with Vue 3 (frontend) and Node.js + TypeScript + MongoDB (backend). Includes login functionality, filtering, and a responsive layout.
 
 ---
 
@@ -59,7 +61,7 @@ Here are some screenshots of the application:
    npm install
    ```
 
-3. Setup MongoDB:
+3. Setup MongoDB Locally:
 
    - Download and install [MongoDB Community Edition](https://www.mongodb.com/try/download/community)
    - Make sure MongoDB is running on `mongodb://localhost:27017`
